@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 15vh 85vh 10vh;
+}
+
+header {
+    border: 1px solid blue;
+}
+
+main {
+    border: 1px solid green;
+}
+
+footer {
+    border: 1px solid purple;
+}
