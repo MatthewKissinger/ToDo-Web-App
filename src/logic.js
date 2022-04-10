@@ -1,34 +1,47 @@
-// project array that will store all project objects -- setting it up with an initial default project called 'primary'
-
 // importing activeProject variable for testing purposes
 import * as index from './index';
 
-let projects = [
-    {
-        name: 'primary',
-        tasks: [
-            {
-                name: 'breakfast',
-                priority: 'high',
-                notes: 'eat more oatmeal and whole fruit',
-                dueDate: '4/20/22'
-            }
-        ]
-    }
-];
+let projects = [];
 
 // factory functions
-const newProject = (name) => {
-    let tasks = [];
+const updateProject = {
+    setName(newName) {
+        return this.name = newName;
+    }
+}
 
-    // add in update name method to prototype
-    return { name, tasks};
+const newProject = (name) => {
+    let project = Object.create(updateProject);
+
+    project.tasks = [];
+    project.name = name;
+
+    return project;
+}
+
+const updateTask = {
+    setName(newName) {
+        return this.name = newName;
+    },
+    setPriority(newPriority) {
+        return this.priority = newPriority;
+    },
+    setNotes(newNotes) {
+        return this.notes = newNotes;
+    },
+    setDueDate(newDueDate) {
+        return this.dueDate = newDueDate;
+    }
 }
 
 const newTask = (name, priority, notes, dueDate) => {
-
-    // add in update name, priority, notes, dueDate methods to prototype
-    return { name, priority, notes, dueDate};
+    let task = Object.create(updateTask);
+    task.name = name;
+    task.priority = priority;
+    task.notes = notes;
+    task.dueDate = dueDate;
+    
+    return task;
 }
 
 // methods
@@ -53,7 +66,6 @@ function addNewTask(task) {
     projects[findIndexOfProject(activeProject)].tasks.push(task);
 }
 
-// ** findIndexOfTask
 function findIndexOfTask(taskName) {
     let activeProject = index.getActiveProject();
     let projectIndex = findIndexOfProject(activeProject);
@@ -63,9 +75,12 @@ function findIndexOfTask(taskName) {
     return taskIndex;
 }
 
-// ** removeTask
+function removeTask(taskName) {
+    let activeProject = index.getActiveProject();
+    projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
+}
 
-export { projects, newProject, addNewProject, removeProject, newTask, addNewTask, findIndexOfTask };
+export { projects, newProject, addNewProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask };
 
 
 
