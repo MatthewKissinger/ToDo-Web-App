@@ -1,5 +1,7 @@
-
 // project array that will store all project objects -- setting it up with an initial default project called 'primary'
+
+// importing activeProject variable for testing purposes
+import * as index from './index';
 
 let projects = [
     {
@@ -18,11 +20,16 @@ let projects = [
 // factory functions
 const newProject = (name) => {
     let tasks = [];
+
+    // add in update name method to prototype
     return { name, tasks};
 }
 
-// ** add newTask factory function **
-// -----------------------------------
+const newTask = (name, priority, notes, dueDate) => {
+
+    // add in update name, priority, notes, dueDate methods to prototype
+    return { name, priority, notes, dueDate};
+}
 
 // methods
 function addNewProject(project) {
@@ -41,14 +48,24 @@ function removeProject(projectName) {
     projects.splice(findIndexOfProject(projectName), 1);
 }
 
-// ** add methods
-// -------------
-// ** addNewTask 
+function addNewTask(task) {
+    let activeProject = index.getActiveProject();
+    projects[findIndexOfProject(activeProject)].tasks.push(task);
+}
+
 // ** findIndexOfTask
+function findIndexOfTask(taskName) {
+    let activeProject = index.getActiveProject();
+    let projectIndex = findIndexOfProject(activeProject);
+    let taskIndex = projects[projectIndex].tasks.findIndex(obj => {
+        return obj.name === taskName;
+    })
+    return taskIndex;
+}
+
 // ** removeTask
 
-
-export { projects, newProject, addNewProject, removeProject };
+export { projects, newProject, addNewProject, removeProject, newTask, addNewTask, findIndexOfTask };
 
 
 
