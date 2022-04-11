@@ -62,8 +62,7 @@ function removeProject(projectName) {
 }
 
 function addNewTask(task) {
-    let activeProject = index.getActiveProject();
-    projects[findIndexOfProject(activeProject)].tasks.push(task);
+    projects[findIndexOfProject(index.getActiveProject())].tasks.push(task);
 }
 
 function findIndexOfTask(taskName) {
@@ -80,7 +79,7 @@ function removeTask(taskName) {
     projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
 }
 
-export { projects, newProject, addNewProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask };
+export { projects, newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask };
 
 
 

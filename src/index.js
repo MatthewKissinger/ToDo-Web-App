@@ -1,10 +1,8 @@
 // To Do List
 
-// create DOM js module
-// the DOM js module will use any logic functions to appropriately generate dom elements 
-
 import './style.css';
 import * as logicModule from './logic';
+import * as domModule from './dom';
 
 let _activeProject = 'primary'; 
 
@@ -18,11 +16,7 @@ logicModule.addNewProject(project1);
 const task1 = logicModule.newTask('breakfast', 'high', 'eat more oatmeal and whole fruit', '4/20/22');
 logicModule.addNewTask(task1);
 
-
-
-
-
-
+domModule.mainRender();
 
 //console.log testing area
 //-------------------------

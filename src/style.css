@@ -11,12 +11,44 @@ body {
 
 header {
     border: 1px solid blue;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
 }
 
 main {
     border: 1px solid green;
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+}
+
+#project-wrapper {
+    border: 1px solid orange;
+    padding: 1.5rem;
+}
+
+.project-card {
+    border: 1px solid blue;
+    border-radius: 6px;
+    padding: .75rem 1rem;
+    cursor: pointer;
+}
+
+#task-wrapper {
+    border: 1px solid red;
+    padding: 1.5rem 3rem;
+}
+
+.task-card {
+    border: 1px solid blue;
+    border-radius: 6px;
+    padding: .75rem 1.5rem;
+    cursor: pointer;
 }
 
 footer {
     border: 1px solid purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
