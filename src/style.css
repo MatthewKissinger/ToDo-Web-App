@@ -28,6 +28,8 @@ main {
 }
 
 .project-card {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid blue;
     border-radius: 6px;
     padding: .75rem 1rem;
@@ -36,14 +38,51 @@ main {
 
 #task-wrapper {
     border: 1px solid red;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 3rem ;
 }
 
 .task-card {
+    display: flex;
+    gap: 2rem;
     border: 1px solid blue;
     border-radius: 6px;
     padding: .75rem 1.5rem;
     cursor: pointer;
+}
+
+.remove-icon, .check-icon {
+    cursor: pointer;
+    height: 1.25rem;
+}
+
+.check-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 50%;
+    padding: 0.05rem .1rem;
+}
+
+svg {
+    height: 100%;
+    width: 100%;
+}
+
+.check-icon > svg {
+    height: 90%;
+    width: 90%;
+    color: white;
+}
+
+.remove-icon:hover {
+    color: rgb(195, 85, 85);
+}
+
+.check-icon:hover {
+    background-color: gray;
 }
 
 footer {
