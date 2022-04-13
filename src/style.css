@@ -50,7 +50,13 @@ main {
     cursor: pointer;
 }
 
-.remove-icon, .check-icon {
+#trash-icon {
+    height: 1.25rem;
+    width: 1.25rem;
+    cursor: pointer;
+}
+
+.check-icon, .star-icon {
     cursor: pointer;
     height: 1.25rem;
 }
@@ -66,19 +72,19 @@ main {
     padding: 0.05rem .1rem;
 }
 
-svg {
-    height: 100%;
-    width: 100%;
+.star-icon {
+    color: rgb(154, 154, 154);
+    margin-left: auto;
+}
+
+.feather-star:hover {
+    fill: lightgray;
 }
 
 .check-icon > svg {
     height: 90%;
     width: 90%;
     color: white;
-}
-
-.remove-icon:hover {
-    color: rgb(195, 85, 85);
 }
 
 .check-icon:hover {

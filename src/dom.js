@@ -1,6 +1,7 @@
 // DOM interaction and generation module
 import * as logicModule from './logic';
 import * as index from './index';
+import trashCan from './trash-2.svg';
 
 // global variables
 let main = document.querySelector('main');
@@ -21,14 +22,16 @@ function mainRender() {
         let projectName = document.createElement('p');
         projectName.innerText = project.name;
 
-        let removeIcon = document.createElement('div');
-        removeIcon.classList.add('remove-icon');
-        removeIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>';
+        let trashIcon = document.createElement('object');
+        trashIcon.classList.add('trash-icon');
+        trashIcon.type = "image/svg+xml";
+        trashIcon.data = `${trashCan}`;
+        trashIcon.setAttribute('id', 'trash-icon');
 
         // onclick it will remove the project from the projects array and re-render
 
         projectCard.appendChild(projectName);
-        projectCard.appendChild(removeIcon);
+        projectCard.appendChild(trashIcon);
         projectWrapper.appendChild(projectCard);
     })
 
@@ -37,10 +40,6 @@ function mainRender() {
     taskWrapper.setAttribute('id', 'task-wrapper');
 
     logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
-        console.log(task.name);
-        console.log(task.priority);
-        console.log(task.notes);
-        console.log(task.dueDate);
 
         let taskCard = document.createElement('div');
         taskCard.classList.add('task-card');
@@ -51,12 +50,14 @@ function mainRender() {
         checkIcon.classList.add('check-icon');
         checkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
-        // add priority - have an exclamation point appear in a div when it is high priority - div empty when low
+        let starIcon = document.createElement('div');
+        starIcon.classList.add('star-icon');
+        starIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
 
-        // add dueDate to display
 
         taskCard.appendChild(checkIcon);
         taskCard.appendChild(taskName);
+        taskCard.appendChild(starIcon);
         taskWrapper.appendChild(taskCard);
     })
 
@@ -64,4 +65,17 @@ function mainRender() {
     main.appendChild(taskWrapper);
 }
 
-export { mainRender };
+function renderIconStyles() {
+
+    window.addEventListener('load', function() {
+        let trashObject = document.querySelector('.trash-icon').contentDocument;
+        let element = trashObject.getElementById('trash-can');
+        element.setAttribute('stroke', 'gray');
+        element.style.cursor = 'pointer';
+    
+        console.log(element);
+    })
+}
+
+
+export { mainRender, renderIconStyles };
