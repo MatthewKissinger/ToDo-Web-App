@@ -2,9 +2,12 @@
 import * as logicModule from './logic';
 import * as index from './index';
 import trashCan from './trash-2.svg';
+import plusSquare from './plus-square.svg';
 
 // global variables
 let main = document.querySelector('main');
+
+console.log(trashCan);
 
 // separate the project and task rendering into functions
 // create an add project button - pop up form to enter details
@@ -22,16 +25,17 @@ function mainRender() {
         let projectName = document.createElement('p');
         projectName.innerText = project.name;
 
-        let trashIcon = document.createElement('object');
-        trashIcon.classList.add('trash-icon');
-        trashIcon.type = "image/svg+xml";
-        trashIcon.data = `${trashCan}`;
-        trashIcon.setAttribute('id', 'trash-icon');
-
+        let trashDiv = document.createElement('div');
+        
+        let plusDiv = document.createElement('div');
+        setAttributes(plusDiv, {"id": "plus-div", "href": "#"});
+        plusDiv.innerHTML = `<svg class="plus-icon">
+                                <use href="${plusSquare}#plus-icon"></use>
+                            </svg>`;
         // onclick it will remove the project from the projects array and re-render
 
         projectCard.appendChild(projectName);
-        projectCard.appendChild(trashIcon);
+        projectCard.appendChild(plusDiv);
         projectWrapper.appendChild(projectCard);
     })
 
@@ -75,6 +79,12 @@ function renderIconStyles() {
     
         console.log(element);
     })
+}
+
+function setAttributes(element, attrs) {
+    for (var key in attrs) {
+        element.setAttribute(key, attrs[key]);
+    }
 }
 
 

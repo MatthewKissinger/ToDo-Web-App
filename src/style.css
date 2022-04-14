@@ -50,6 +50,35 @@ main {
     cursor: pointer;
 }
 
+.feather {
+    display: none;
+}
+
+svg {
+    height: 24px;
+    width: 24px;
+}
+
+#plus-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.plus-icon {
+    stroke: black;
+    fill: none;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.plus-icon:hover {
+    stroke: red;
+}
+
 #trash-icon {
     height: 1.25rem;
     width: 1.25rem;
