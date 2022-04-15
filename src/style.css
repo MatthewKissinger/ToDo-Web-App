@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.feather {
+    display: none;
+}
+
 body {
     display: grid;
     grid-template-rows: 15vh 85vh 10vh;
@@ -27,13 +31,38 @@ main {
     padding: 1.5rem;
 }
 
-.project-card {
+.project-card, #new-project-div {
     display: flex;
     justify-content: space-between;
     border: 1px solid blue;
     border-radius: 6px;
     padding: .75rem 1rem;
+    margin-bottom: 1rem;
     cursor: pointer;
+}
+
+#plus-div, #trash-div, #check-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+.plus-icon, .trash-icon, .check-icon {
+    stroke: black;
+    fill: none;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+.plus-icon:hover, .check-icon:hover {
+    stroke: green;
+}
+
+.trash-icon:hover {
+    stroke: red;
 }
 
 #task-wrapper {
@@ -50,75 +79,15 @@ main {
     cursor: pointer;
 }
 
-.feather {
-    display: none;
-}
 
-svg {
-    height: 24px;
-    width: 24px;
-}
 
-#plus-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1.25rem;
-    width: 1.25rem;
-}
 
-.plus-icon {
-    stroke: black;
-    fill: none;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-}
 
-.plus-icon:hover {
-    stroke: red;
-}
 
-#trash-icon {
-    height: 1.25rem;
-    width: 1.25rem;
-    cursor: pointer;
-}
 
-.check-icon, .star-icon {
-    cursor: pointer;
-    height: 1.25rem;
-}
 
-.check-icon {
-    height: 1.25rem;
-    width: 1.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid gray;
-    border-radius: 50%;
-    padding: 0.05rem .1rem;
-}
 
-.star-icon {
-    color: rgb(154, 154, 154);
-    margin-left: auto;
-}
 
-.feather-star:hover {
-    fill: lightgray;
-}
-
-.check-icon > svg {
-    height: 90%;
-    width: 90%;
-    color: white;
-}
-
-.check-icon:hover {
-    background-color: gray;
-}
 
 footer {
     border: 1px solid purple;

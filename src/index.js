@@ -17,7 +17,7 @@ const task1 = logicModule.newTask('breakfast', 'high', 'eat more oatmeal and who
 logicModule.addNewTask(task1);
 
 domModule.mainRender();
-// domModule.renderIconStyles();
+
 
 //console.log testing area
 //-------------------------
