@@ -7,13 +7,10 @@ import checkMark from './check.svg';
 import starIcon from './star.svg';
 import calendarIcon from './calendar.svg';
 import editIcon from './edit.svg';
+import saveIcon from './save.svg';
 
 // global variables
 let main = document.querySelector('main');
-
-// separate the project and task rendering into functions
-// create an add project button - pop up form to enter details
-// create an add task button - pop up form to enter details
 
 // render functions
 // default render function 
@@ -22,18 +19,31 @@ function mainRender() {
     projectWrapper.setAttribute('id', 'project-wrapper');
 
     let newProjectDiv = document.createElement('div');
-    newProjectDiv.setAttribute('id', 'new-project-div');
+    newProjectDiv.setAttribute('id', 'new-project-btn');
     let newProjectPara = document.createElement('p');
     newProjectPara.innerText = 'add project';
-    let plusDiv = document.createElement('div');
-        setAttributes(plusDiv, {"id": "plus-div", "href": "#"});
-        plusDiv.innerHTML = `<svg class="plus-icon">
-                                <use href="${plusSquare}#plus-icon"></use>
-                            </svg>`;
 
+    let plusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    plusSvg.classList.add('plus-svg');
+    plusSvg.innerHTML = `<use href="${plusSquare}#plus-icon"></use>`;
+                            
     newProjectDiv.appendChild(newProjectPara);
-    newProjectDiv.appendChild(plusDiv);
+    newProjectDiv.appendChild(plusSvg);                        
+
+    let newProjectForm = document.createElement('div');
+    newProjectForm.setAttribute('id', 'new-project-form');
+    // newProjectForm.style.display = 'none';
+    let newProjectInput = document.createElement('input');
+
+    let saveSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    saveSvg.classList.add('save-svg');
+    saveSvg.innerHTML = `<use href="${saveIcon}#save-icon"></use>`;
+
+    newProjectForm.appendChild(newProjectInput);
+    newProjectForm.appendChild(saveSvg);
+
     projectWrapper.appendChild(newProjectDiv);
+    projectWrapper.appendChild(newProjectForm);
 
     logicModule.projects.forEach((project) => {
         let projectCard = document.createElement('div');
@@ -41,21 +51,12 @@ function mainRender() {
         let projectName = document.createElement('p');
         projectName.innerText = project.name;
 
-        let trashDiv = document.createElement('div');
-        setAttributes(trashDiv, {"id": "trash-div", "href": "#"});
-        trashDiv.innerHTML = `<svg class="trash-icon">
-                                <use href="${trashCan}#trash-icon"></use>
-                            </svg>`;
-                
-        let plusDiv = document.createElement('div');
-        setAttributes(plusDiv, {"id": "plus-div", "href": "#"});
-        plusDiv.innerHTML = `<svg class="plus-icon">
-                                <use href="${plusSquare}#plus-icon"></use>
-                            </svg>`;
-        // onclick it will remove the project from the projects array and re-render
+        let deleteSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        deleteSvg.classList.add('delete-svg');
+        deleteSvg.innerHTML = `<use href="${trashCan}#trash-icon"></use>`;
 
         projectCard.appendChild(projectName);
-        projectCard.appendChild(trashDiv);
+        projectCard.appendChild(deleteSvg);
         projectWrapper.appendChild(projectCard);
     })
 
@@ -67,16 +68,15 @@ function mainRender() {
 
     let newTaskDiv = document.createElement('div');
     newTaskDiv.setAttribute('class', 'task-card');
+    newTaskDiv.setAttribute('id', 'new-task-card');
     let newTaskPara = document.createElement('p');
     newTaskPara.innerText = 'add project';
-    let taskPlusDiv = document.createElement('div');
-        setAttributes(taskPlusDiv, {"class": "plus-div", "href": "#"});
-        taskPlusDiv.innerHTML = `<svg class="plus-icon">
-                                <use href="${plusSquare}#plus-icon"></use>
-                            </svg>`;
+    let taskPlusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    taskPlusSvg.classList.add('plus-svg');
+    taskPlusSvg.innerHTML = `<use href="${plusSquare}#plus-icon"></use>`;
 
     newTaskDiv.appendChild(newTaskPara);
-    newTaskDiv.appendChild(taskPlusDiv);
+    newTaskDiv.appendChild(taskPlusSvg);
     taskWrapper.appendChild(newTaskDiv);
 
     logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
@@ -86,48 +86,36 @@ function mainRender() {
         let taskName = document.createElement('p');
         taskName.innerText = task.name;
 
-        let checkDiv = document.createElement('div');
-        setAttributes(checkDiv, {"id": "check-div", "href": "#"});
-        checkDiv.innerHTML = `<svg class="check-icon">
-                                <use href="${checkMark}#check-icon"></use>
-                            </svg>`;
+        let checkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        checkSvg.classList.add('check-svg');
+        checkSvg.innerHTML = `<use href="${checkMark}#check-icon"></use>`;
 
         let dueDateText = document.createElement('p');
         dueDateText.classList.add('due-date-text');
         dueDateText.innerText = task.dueDate;
 
-        let calendarDiv = document.createElement('div');
-        setAttributes(calendarDiv, {"id": "calendar-div", "href": "#"});
-        calendarDiv.innerHTML = `<svg class="calendar-icon">
-                                    <use href="${calendarIcon}#calendar-icon"></use>
-                              </svg>`;
+        let calendarSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        calendarSvg.classList.add('calendar-svg');
+        calendarSvg.innerHTML = `<use href="${calendarIcon}#calendar-icon"></use>`;
 
-        let starDiv = document.createElement('div');
-        setAttributes(starDiv, {"id": "star-div", "href": "#"});
-        starDiv.innerHTML = `<svg class="star-icon">
-                                    <use href="${starIcon}#star-icon"></use>
-                              </svg>`;
-        
+        let starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        starSvg.classList.add('star-svg');
+        starSvg.innerHTML = `<use href="${starIcon}#star-icon"></use>`;
+
         if (task.priority === 'high') {
-            console.log('fill in the star');
-            starDiv.innerHTML = `<svg class="star-icon star-fill">
-                                    <use href="${starIcon}#star-icon"></use>
-                                </svg>`;
+            starSvg.classList.add('star-fill'); 
         }
 
-        let editDiv = document.createElement('div');
-        setAttributes(editDiv, {"id": "edit-div", "href": "#"});
-        editDiv.innerHTML = `<svg class="edit-icon">
-                                    <use href="${editIcon}#edit-icon"></use>
-                              </svg>`;
+        let editSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        editSvg.classList.add('edit-svg');
+        editSvg.innerHTML = `<use href="${editIcon}#edit-icon"></use>`;
         
-
-        taskCard.appendChild(checkDiv);
+        taskCard.appendChild(checkSvg);
         taskCard.appendChild(taskName);
         taskCard.appendChild(dueDateText);
-        taskCard.appendChild(calendarDiv);
-        taskCard.appendChild(starDiv);
-        taskCard.appendChild(editDiv);
+        taskCard.appendChild(calendarSvg);
+        taskCard.appendChild(starSvg);
+        taskCard.appendChild(editSvg);
         taskWrapper.appendChild(taskCard);
     })
 
@@ -140,10 +128,5 @@ function setAttributes(element, attrs) {
         element.setAttribute(key, attrs[key]);
     }
 }
-
-// testing window event clicks with e.target -- tie in the logic functions
-// window.addEventListener('click', function(e) {
-//     console.log(e.target);
-// })
 
 export { mainRender };

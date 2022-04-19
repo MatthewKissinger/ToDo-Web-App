@@ -18,9 +18,17 @@ logicModule.addNewTask(task1);
 
 domModule.mainRender();
 
+window.addEventListener('click', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    let targetParent = e.target.parentElement;
+
+    console.log(e.target);
+    console.log(targetParent);
+})
+
 
 //console.log testing area
-//-------------------------
 console.log(_activeProject === logicModule.projects[0].name);
 
 console.log(logicModule.projects);
