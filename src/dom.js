@@ -4,6 +4,9 @@ import * as index from './index';
 import trashCan from './trash-2.svg';
 import plusSquare from './plus-square.svg';
 import checkMark from './check.svg';
+import starIcon from './star.svg';
+import calendarIcon from './calendar.svg';
+import editIcon from './edit.svg';
 
 // global variables
 let main = document.querySelector('main');
@@ -20,10 +23,8 @@ function mainRender() {
 
     let newProjectDiv = document.createElement('div');
     newProjectDiv.setAttribute('id', 'new-project-div');
-
     let newProjectPara = document.createElement('p');
     newProjectPara.innerText = 'add project';
-
     let plusDiv = document.createElement('div');
         setAttributes(plusDiv, {"id": "plus-div", "href": "#"});
         plusDiv.innerHTML = `<svg class="plus-icon">
@@ -62,6 +63,22 @@ function mainRender() {
     let taskWrapper = document.createElement('div');
     taskWrapper.setAttribute('id', 'task-wrapper');
 
+    // add a new task button/div
+
+    let newTaskDiv = document.createElement('div');
+    newTaskDiv.setAttribute('class', 'task-card');
+    let newTaskPara = document.createElement('p');
+    newTaskPara.innerText = 'add project';
+    let taskPlusDiv = document.createElement('div');
+        setAttributes(taskPlusDiv, {"class": "plus-div", "href": "#"});
+        taskPlusDiv.innerHTML = `<svg class="plus-icon">
+                                <use href="${plusSquare}#plus-icon"></use>
+                            </svg>`;
+
+    newTaskDiv.appendChild(newTaskPara);
+    newTaskDiv.appendChild(taskPlusDiv);
+    taskWrapper.appendChild(newTaskDiv);
+
     logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
 
         let taskCard = document.createElement('div');
@@ -75,13 +92,42 @@ function mainRender() {
                                 <use href="${checkMark}#check-icon"></use>
                             </svg>`;
 
-        let starIcon = document.createElement('div');
-        starIcon.classList.add('star-icon');
-        starIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>';
+        let dueDateText = document.createElement('p');
+        dueDateText.classList.add('due-date-text');
+        dueDateText.innerText = task.dueDate;
+
+        let calendarDiv = document.createElement('div');
+        setAttributes(calendarDiv, {"id": "calendar-div", "href": "#"});
+        calendarDiv.innerHTML = `<svg class="calendar-icon">
+                                    <use href="${calendarIcon}#calendar-icon"></use>
+                              </svg>`;
+
+        let starDiv = document.createElement('div');
+        setAttributes(starDiv, {"id": "star-div", "href": "#"});
+        starDiv.innerHTML = `<svg class="star-icon">
+                                    <use href="${starIcon}#star-icon"></use>
+                              </svg>`;
+        
+        if (task.priority === 'high') {
+            console.log('fill in the star');
+            starDiv.innerHTML = `<svg class="star-icon star-fill">
+                                    <use href="${starIcon}#star-icon"></use>
+                                </svg>`;
+        }
+
+        let editDiv = document.createElement('div');
+        setAttributes(editDiv, {"id": "edit-div", "href": "#"});
+        editDiv.innerHTML = `<svg class="edit-icon">
+                                    <use href="${editIcon}#edit-icon"></use>
+                              </svg>`;
+        
 
         taskCard.appendChild(checkDiv);
         taskCard.appendChild(taskName);
-        taskCard.appendChild(starIcon);
+        taskCard.appendChild(dueDateText);
+        taskCard.appendChild(calendarDiv);
+        taskCard.appendChild(starDiv);
+        taskCard.appendChild(editDiv);
         taskWrapper.appendChild(taskCard);
     })
 
@@ -94,7 +140,6 @@ function setAttributes(element, attrs) {
         element.setAttribute(key, attrs[key]);
     }
 }
-
 
 // testing window event clicks with e.target -- tie in the logic functions
 // window.addEventListener('click', function(e) {
