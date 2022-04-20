@@ -15,11 +15,13 @@ let main = document.querySelector('main');
 // render functions
 // default render function 
 function mainRender() {
+    main.innerHTML = '';
+
     let projectWrapper = document.createElement('div');
     projectWrapper.setAttribute('id', 'project-wrapper');
 
     let newProjectDiv = document.createElement('div');
-    newProjectDiv.setAttribute('id', 'new-project-btn');
+    newProjectDiv.setAttribute('class', 'new-project-btn');
     let newProjectPara = document.createElement('p');
     newProjectPara.innerText = 'add project';
 
@@ -31,9 +33,11 @@ function mainRender() {
     newProjectDiv.appendChild(plusSvg);                        
 
     let newProjectForm = document.createElement('div');
-    newProjectForm.setAttribute('id', 'new-project-form');
-    // newProjectForm.style.display = 'none';
+    newProjectForm.setAttribute('class', 'new-project-form');
+    newProjectForm.classList.add('hide');
     let newProjectInput = document.createElement('input');
+    newProjectInput.classList.add('new-project-input');
+    // add in a cancel button - this will revert back to the new-project-btn div
 
     let saveSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     saveSvg.classList.add('save-svg');
@@ -129,4 +133,8 @@ function setAttributes(element, attrs) {
     }
 }
 
-export { mainRender };
+function toggleDisplayNone(element) {
+    element.classList.toggle('hide');
+}
+
+export { mainRender, toggleDisplayNone };
