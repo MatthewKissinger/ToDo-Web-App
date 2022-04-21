@@ -64,6 +64,7 @@ function mainRender() {
         projectWrapper.appendChild(projectCard);
     })
 
+
     // separate into it's own function
     let taskWrapper = document.createElement('div');
     taskWrapper.setAttribute('id', 'task-wrapper');
@@ -74,7 +75,7 @@ function mainRender() {
     newTaskDiv.setAttribute('class', 'task-card');
     newTaskDiv.setAttribute('id', 'new-task-card');
     let newTaskPara = document.createElement('p');
-    newTaskPara.innerText = 'add project';
+    newTaskPara.innerText = 'add task';
     let taskPlusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     taskPlusSvg.classList.add('plus-svg');
     taskPlusSvg.innerHTML = `<use href="${plusSquare}#plus-icon"></use>`;
@@ -83,54 +84,51 @@ function mainRender() {
     newTaskDiv.appendChild(taskPlusSvg);
     taskWrapper.appendChild(newTaskDiv);
 
-    logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
+    if (!(logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.length <= 0)) {
+        logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
 
-        let taskCard = document.createElement('div');
-        taskCard.classList.add('task-card');
-        let taskName = document.createElement('p');
-        taskName.innerText = task.name;
-
-        let checkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        checkSvg.classList.add('check-svg');
-        checkSvg.innerHTML = `<use href="${checkMark}#check-icon"></use>`;
-
-        let dueDateText = document.createElement('p');
-        dueDateText.classList.add('due-date-text');
-        dueDateText.innerText = task.dueDate;
-
-        let calendarSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        calendarSvg.classList.add('calendar-svg');
-        calendarSvg.innerHTML = `<use href="${calendarIcon}#calendar-icon"></use>`;
-
-        let starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        starSvg.classList.add('star-svg');
-        starSvg.innerHTML = `<use href="${starIcon}#star-icon"></use>`;
-
-        if (task.priority === 'high') {
-            starSvg.classList.add('star-fill'); 
-        }
-
-        let editSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        editSvg.classList.add('edit-svg');
-        editSvg.innerHTML = `<use href="${editIcon}#edit-icon"></use>`;
+            let taskCard = document.createElement('div');
+            taskCard.classList.add('task-card');
+            let taskName = document.createElement('p');
+            taskName.innerText = task.name;
+    
+            let checkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            checkSvg.classList.add('check-svg');
+            checkSvg.innerHTML = `<use href="${checkMark}#check-icon"></use>`;
+    
+            let dueDateText = document.createElement('p');
+            dueDateText.classList.add('due-date-text');
+            dueDateText.innerText = task.dueDate;
+    
+            let calendarSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            calendarSvg.classList.add('calendar-svg');
+            calendarSvg.innerHTML = `<use href="${calendarIcon}#calendar-icon"></use>`;
+    
+            let starSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            starSvg.classList.add('star-svg');
+            starSvg.innerHTML = `<use href="${starIcon}#star-icon"></use>`;
+    
+            if (task.priority === 'high') {
+                starSvg.classList.add('star-fill'); 
+            }
+    
+            let editSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            editSvg.classList.add('edit-svg');
+            editSvg.innerHTML = `<use href="${editIcon}#edit-icon"></use>`;
+            
+            taskCard.appendChild(checkSvg);
+            taskCard.appendChild(taskName);
+            taskCard.appendChild(dueDateText);
+            taskCard.appendChild(calendarSvg);
+            taskCard.appendChild(starSvg);
+            taskCard.appendChild(editSvg);
+            taskWrapper.appendChild(taskCard);
+        })
+    } 
         
-        taskCard.appendChild(checkSvg);
-        taskCard.appendChild(taskName);
-        taskCard.appendChild(dueDateText);
-        taskCard.appendChild(calendarSvg);
-        taskCard.appendChild(starSvg);
-        taskCard.appendChild(editSvg);
-        taskWrapper.appendChild(taskCard);
-    })
-
+    
     main.appendChild(projectWrapper);
     main.appendChild(taskWrapper);
-}
-
-function setAttributes(element, attrs) {
-    for (var key in attrs) {
-        element.setAttribute(key, attrs[key]);
-    }
 }
 
 function toggleDisplayNone(element) {

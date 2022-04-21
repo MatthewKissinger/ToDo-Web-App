@@ -1,4 +1,11 @@
 // To Do List
+// 1) Form to add new task
+//  -- hide the add task button div and reveal the add new task form on click
+// 2) edit the appropriate task fields for each icon
+// 3) remove a task when clicking on the check icon
+// 4) update and improve styling features
+
+
 import './style.css';
 import * as logicModule from './logic';
 import * as domModule from './dom';
@@ -15,12 +22,15 @@ logicModule.addNewProject(project1);
 const task1 = logicModule.newTask('breakfast', 'high', 'eat more oatmeal and whole fruit', '4/20/22');
 logicModule.addNewTask(task1);
 
+const project2 = logicModule.newProject('groceries');
+logicModule.addNewProject(project2);
+
 domModule.mainRender();
 
 window.addEventListener('click', function(e) {
     let targetParent = e.target.parentElement;
 
-    // console.log(e.target);
+    console.log(e.target);
     // console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
@@ -50,7 +60,8 @@ window.addEventListener('click', function(e) {
             inputValue.value = '';
         }  
     }
-    
+
+    // remove project from array and rendering
     if (e.target.classList.contains('delete-svg')) {
         let answer = confirm('Delete item?');
         let prevSibling = e.target.previousElementSibling;
@@ -62,15 +73,16 @@ window.addEventListener('click', function(e) {
                 return;
             }
             logicModule.removeProject(prevSibling.innerText);
+            _activeProject = 'primary';
             domModule.mainRender();
         }
     }
+
+    // update _activeProject and display tasks 
+    if (e.target.classList.contains('project-card')) {
+        _activeProject = e.target.firstChild.innerText;
+        domModule.mainRender();
+    }
 })
-
-
-//console.log testing area
-// console.log(_activeProject === logicModule.projects[0].name);
-
-// console.log(logicModule.projects);
 
 export { getActiveProject };

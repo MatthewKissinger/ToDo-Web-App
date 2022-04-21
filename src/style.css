@@ -21,6 +21,7 @@ body {
 
 p {
     font-size: 1.25rem;
+    pointer-events: none;
 }
 
 header {
