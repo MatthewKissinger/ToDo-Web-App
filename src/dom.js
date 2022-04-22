@@ -8,6 +8,7 @@ import starIcon from './star.svg';
 import calendarIcon from './calendar.svg';
 import editIcon from './edit.svg';
 import saveIcon from './save.svg';
+import minusIcon from './minus-square.svg';
 
 // global variables
 let main = document.querySelector('main');
@@ -37,14 +38,16 @@ function mainRender() {
     newProjectForm.classList.add('hide');
     let newProjectInput = document.createElement('input');
     newProjectInput.classList.add('new-project-input');
-    // add in a cancel button - this will revert back to the new-project-btn div
-
     let saveSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     saveSvg.classList.add('save-svg');
     saveSvg.innerHTML = `<use href="${saveIcon}#save-icon"></use>`;
+    let minusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    minusSvg.classList.add('minus-svg');
+    minusSvg.innerHTML = `<use href="${minusIcon}#minus-icon"></use>`;
 
     newProjectForm.appendChild(newProjectInput);
     newProjectForm.appendChild(saveSvg);
+    newProjectForm.appendChild(minusSvg);
 
     projectWrapper.appendChild(newProjectDiv);
     projectWrapper.appendChild(newProjectForm);

@@ -10,7 +10,7 @@ import './style.css';
 import * as logicModule from './logic';
 import * as domModule from './dom';
 
-let _activeProject = 'primary'; 
+let _activeProject = 'primary';
 
 function getActiveProject() {
     return _activeProject;
@@ -27,7 +27,7 @@ logicModule.addNewProject(project2);
 
 domModule.mainRender();
 
-window.addEventListener('click', function(e) {
+window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
 
     console.log(e.target);
@@ -40,6 +40,7 @@ window.addEventListener('click', function(e) {
         domModule.toggleDisplayNone(newProjectForm);
     }
 
+    // save and add the project to the array and render
     if (targetParent.classList.contains('new-project-form') && e.target.classList.contains('save-svg')) {
         let inputValue = document.querySelector('.new-project-input');
 
@@ -50,6 +51,10 @@ window.addEventListener('click', function(e) {
             return;
         }
 
+        if (inputValue.value === '') {
+            alert('Please name your new project');
+        }
+
         if (inputValue.value !== '') {
             let newProject = logicModule.newProject(inputValue.value);
             logicModule.addNewProject(newProject);
@@ -58,7 +63,17 @@ window.addEventListener('click', function(e) {
             domModule.toggleDisplayNone(newProjectBtn);
             domModule.mainRender();
             inputValue.value = '';
-        }  
+        }
+    }
+
+    // cancel the add new project form display
+    if (targetParent.classList.contains('new-project-form') && e.target.classList.contains('minus-svg')) {
+        let inputValue = document.querySelector('.new-project-input');
+        console.log('toggle the add project form and add project button');
+
+        domModule.toggleDisplayNone(targetParent);
+        domModule.mainRender();
+        inputValue.value = '';
     }
 
     // remove project from array and rendering

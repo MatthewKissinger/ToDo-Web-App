@@ -53,6 +53,10 @@ main {
     cursor: pointer;
 }
 
+.new-project-form {
+    justify-content: flex-start;
+}
+
 input {
     padding: .3rem .5rem;
     border: 1px solid lightgray;
@@ -71,8 +75,16 @@ svg:hover {
     stroke: green;
 }
 
-.plus-svg {
+.plus-svg, .save-svg {
     margin-left: auto;
+}
+
+.minus-svg {
+    margin-left: 1rem;
+}
+
+.minus-svg:hover {
+    stroke: red;
 }
 
 .delete-svg:hover {
