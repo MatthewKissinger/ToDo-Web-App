@@ -36,6 +36,8 @@ function mainRender() {
     let newProjectForm = document.createElement('div');
     newProjectForm.setAttribute('class', 'new-project-form');
     newProjectForm.classList.add('hide');
+    let projectNameLabel = document.createElement('label');
+    projectNameLabel.innerText = 'name';
     let newProjectInput = document.createElement('input');
     newProjectInput.classList.add('new-project-input');
     let saveSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -45,6 +47,7 @@ function mainRender() {
     minusSvg.classList.add('minus-svg');
     minusSvg.innerHTML = `<use href="${minusIcon}#minus-icon"></use>`;
 
+    newProjectForm.appendChild(projectNameLabel);
     newProjectForm.appendChild(newProjectInput);
     newProjectForm.appendChild(saveSvg);
     newProjectForm.appendChild(minusSvg);
@@ -85,7 +88,48 @@ function mainRender() {
 
     newTaskDiv.appendChild(newTaskPara);
     newTaskDiv.appendChild(taskPlusSvg);
+
+    let newTaskForm = document.createElement('div');
+    newTaskForm.classList.add('new-task-form');
+
+    let taskNameLabel = document.createElement('label');
+    taskNameLabel.innerText = 'name';
+    let taskNameInput = document.createElement('input');
+    taskNameInput.classList.add('task-name-input');
+    taskNameInput.setAttribute('type', 'text');
+
+    let taskDateLabel = document.createElement('label');
+    taskDateLabel.innerText = 'date';
+    let taskDateInput = document.createElement('input');
+    taskDateInput.classList.add('task-date-input');
+    taskDateInput.setAttribute('type', 'date');
+
+    let lowPriorityLabel = document.createElement('label');
+    lowPriorityLabel.innerText = 'low priority';
+    lowPriorityLabel.setAttribute('for', 'low');
+    let lowPriorityInput = document.createElement('input');
+    lowPriorityInput.setAttribute('type', 'radio');
+    lowPriorityInput.setAttribute('id', 'low');
+
+    let highPriorityLabel = document.createElement('label');
+    highPriorityLabel.innerText = 'high priority';
+    highPriorityLabel.setAttribute('for', 'low');
+    let highPriorityInput = document.createElement('input');
+    highPriorityInput.setAttribute('type', 'radio');
+    highPriorityInput.setAttribute('id', 'high');
+
+
+    newTaskForm.appendChild(taskNameLabel);
+    newTaskForm.appendChild(taskNameInput);
+    newTaskForm.appendChild(taskDateLabel);
+    newTaskForm.appendChild(taskDateInput);
+    newTaskForm.appendChild(lowPriorityLabel);
+    newTaskForm.appendChild(lowPriorityInput);
+    newTaskForm.appendChild(highPriorityLabel);
+    newTaskForm.appendChild(highPriorityInput);
+
     taskWrapper.appendChild(newTaskDiv);
+    taskWrapper.appendChild(newTaskForm);
 
     if (!(logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.length <= 0)) {
         logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
@@ -129,7 +173,6 @@ function mainRender() {
         })
     } 
         
-    
     main.appendChild(projectWrapper);
     main.appendChild(taskWrapper);
 }

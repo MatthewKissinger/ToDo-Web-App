@@ -57,6 +57,10 @@ main {
     justify-content: flex-start;
 }
 
+label {
+    margin-right: 1rem;
+}
+
 input {
     padding: .3rem .5rem;
     border: 1px solid lightgray;
@@ -96,10 +100,11 @@ svg:hover {
 }
 
 #task-wrapper {
-    padding: 1.5rem 3rem ;
+    padding: 1.5rem 3rem;
+    position: relative;
 }
 
-.task-card {
+.task-card, .new-task-form {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -113,6 +118,18 @@ svg:hover {
 #new-task-card {
     width: 20%;
     margin: 0 auto 1rem;
+}
+
+.new-task-form {
+    flex-direction: column;
+    cursor: default;
+    width: 50%;
+    margin: 0 auto 1rem;
+    position: absolute;
+    z-index: 2;
+    top: 21%;
+    left: 25%;
+    background-color: white;
 }
 
 .due-date-text {
