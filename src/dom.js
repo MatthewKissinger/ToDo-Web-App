@@ -92,41 +92,59 @@ function mainRender() {
     let newTaskForm = document.createElement('div');
     newTaskForm.classList.add('new-task-form');
 
+    let taskNameDiv = document.createElement('div');
+    taskNameDiv.classList.add('task-form-div');
     let taskNameLabel = document.createElement('label');
     taskNameLabel.innerText = 'name';
     let taskNameInput = document.createElement('input');
     taskNameInput.classList.add('task-name-input');
     taskNameInput.setAttribute('type', 'text');
 
+    taskNameDiv.appendChild(taskNameLabel);
+    taskNameDiv.appendChild(taskNameInput);
+
+    let taskDateDiv = document.createElement('div');
+    taskDateDiv.classList.add('task-form-div');
     let taskDateLabel = document.createElement('label');
     taskDateLabel.innerText = 'date';
     let taskDateInput = document.createElement('input');
     taskDateInput.classList.add('task-date-input');
     taskDateInput.setAttribute('type', 'date');
 
+    taskDateDiv.appendChild(taskDateLabel);
+    taskDateDiv.appendChild(taskDateInput);
+
+    let taskPriorityDiv = document.createElement('div');
+    taskPriorityDiv.classList.add('task-form-div');
     let lowPriorityLabel = document.createElement('label');
     lowPriorityLabel.innerText = 'low priority';
     lowPriorityLabel.setAttribute('for', 'low');
     let lowPriorityInput = document.createElement('input');
     lowPriorityInput.setAttribute('type', 'radio');
     lowPriorityInput.setAttribute('id', 'low');
-
+    lowPriorityInput.setAttribute('name', 'priority');
     let highPriorityLabel = document.createElement('label');
     highPriorityLabel.innerText = 'high priority';
     highPriorityLabel.setAttribute('for', 'low');
     let highPriorityInput = document.createElement('input');
     highPriorityInput.setAttribute('type', 'radio');
     highPriorityInput.setAttribute('id', 'high');
+    highPriorityInput.setAttribute('name', 'priority');
+
+    taskPriorityDiv.appendChild(lowPriorityLabel);
+    taskPriorityDiv.appendChild(lowPriorityInput);
+    taskPriorityDiv.appendChild(highPriorityLabel);
+    taskPriorityDiv.appendChild(highPriorityInput);
+
+    let newTaskConfirm = document.createElement('button');
+    newTaskConfirm.innerText = 'Confirm';
+    newTaskConfirm.classList.add('new-task-confirm');
 
 
-    newTaskForm.appendChild(taskNameLabel);
-    newTaskForm.appendChild(taskNameInput);
-    newTaskForm.appendChild(taskDateLabel);
-    newTaskForm.appendChild(taskDateInput);
-    newTaskForm.appendChild(lowPriorityLabel);
-    newTaskForm.appendChild(lowPriorityInput);
-    newTaskForm.appendChild(highPriorityLabel);
-    newTaskForm.appendChild(highPriorityInput);
+    newTaskForm.appendChild(taskNameDiv);
+    newTaskForm.appendChild(taskDateDiv);
+    newTaskForm.appendChild(taskPriorityDiv);
+    newTaskForm.appendChild(newTaskConfirm);
 
     taskWrapper.appendChild(newTaskDiv);
     taskWrapper.appendChild(newTaskForm);
