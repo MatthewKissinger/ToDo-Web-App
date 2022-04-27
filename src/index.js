@@ -98,6 +98,28 @@ window.addEventListener('click', function (e) {
         _activeProject = e.target.firstChild.innerText;
         domModule.mainRender();
     }
+
+    if (targetParent.classList.contains('new-task-btn')) {
+        let newTaskForm = document.querySelector('.new-task-form');
+        domModule.toggleVisibility(targetParent);
+        domModule.toggleDisplayNone(newTaskForm);
+    }
+
+    if (e.target.classList.contains('new-task-confirm')) {
+        console.log('get the input values');
+        let nameInput = document.querySelector('.task-name-input');
+        let dateInput = document.querySelector('.task-date-input');
+
+        let priorities = document.getElementsByName('priority');
+        for (let priority of priorities) {
+            if (priority.checked) {
+                console.log(priority.id);
+            }
+        }
+
+        console.log(nameInput.value);
+        console.log(dateInput.value);
+    }
 })
 
 export { getActiveProject };

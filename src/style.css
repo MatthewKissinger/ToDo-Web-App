@@ -12,8 +12,6 @@ svg > * {
     display: none;
 }
 
-
-
 body {
     display: grid;
     grid-template-rows: 15vh 85vh 10vh;
@@ -142,7 +140,7 @@ svg:hover {
     margin: 0 auto 1rem;
     position: absolute;
     z-index: 2;
-    top: 21%;
+    top: 5%;
     left: 30%;
     background-color: white;
 }
@@ -178,4 +176,8 @@ footer {
 
 .hide {
     display: none;
+}
+
+.hidden {
+    visibility: hidden;
 }

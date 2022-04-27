@@ -79,6 +79,7 @@ function mainRender() {
 
     let newTaskDiv = document.createElement('div');
     newTaskDiv.setAttribute('class', 'task-card');
+    newTaskDiv.classList.add('new-task-btn');
     newTaskDiv.setAttribute('id', 'new-task-card');
     let newTaskPara = document.createElement('p');
     newTaskPara.innerText = 'add task';
@@ -91,6 +92,7 @@ function mainRender() {
 
     let newTaskForm = document.createElement('div');
     newTaskForm.classList.add('new-task-form');
+    newTaskForm.classList.add('hide');
 
     let taskNameDiv = document.createElement('div');
     taskNameDiv.classList.add('task-form-div');
@@ -123,6 +125,7 @@ function mainRender() {
     lowPriorityInput.setAttribute('type', 'radio');
     lowPriorityInput.setAttribute('id', 'low');
     lowPriorityInput.setAttribute('name', 'priority');
+    lowPriorityInput.checked = 'true';
     let highPriorityLabel = document.createElement('label');
     highPriorityLabel.innerText = 'high priority';
     highPriorityLabel.setAttribute('for', 'low');
@@ -199,4 +202,8 @@ function toggleDisplayNone(element) {
     element.classList.toggle('hide');
 }
 
-export { mainRender, toggleDisplayNone };
+function toggleVisibility(element) {
+    element.classList.toggle('hidden');
+}
+
+export { mainRender, toggleDisplayNone, toggleVisibility };
