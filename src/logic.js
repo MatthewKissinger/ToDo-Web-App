@@ -26,19 +26,15 @@ const updateTask = {
     setPriority(newPriority) {
         return this.priority = newPriority;
     },
-    setNotes(newNotes) {
-        return this.notes = newNotes;
-    },
     setDueDate(newDueDate) {
         return this.dueDate = newDueDate;
     }
 }
 
-const newTask = (name, priority, notes, dueDate) => {
+const newTask = (name, priority, dueDate) => {
     let task = Object.create(updateTask);
     task.name = name;
     task.priority = priority;
-    task.notes = notes;
     task.dueDate = dueDate;
     
     return task;

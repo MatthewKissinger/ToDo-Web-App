@@ -94,6 +94,10 @@ function mainRender() {
     newTaskForm.classList.add('new-task-form');
     newTaskForm.classList.add('hide');
 
+    let taskMinusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    taskMinusSvg.classList.add('task-minus-svg');
+    taskMinusSvg.innerHTML = `<use href="${minusIcon}#minus-icon"></use>`;
+
     let taskNameDiv = document.createElement('div');
     taskNameDiv.classList.add('task-form-div');
     let taskNameLabel = document.createElement('label');
@@ -143,7 +147,7 @@ function mainRender() {
     newTaskConfirm.innerText = 'Confirm';
     newTaskConfirm.classList.add('new-task-confirm');
 
-
+    newTaskForm.appendChild(taskMinusSvg);
     newTaskForm.appendChild(taskNameDiv);
     newTaskForm.appendChild(taskDateDiv);
     newTaskForm.appendChild(taskPriorityDiv);

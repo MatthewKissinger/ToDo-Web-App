@@ -1,10 +1,7 @@
 // To Do List
-// 1) Form to add new task
-//  -- hide the add task button div and reveal the add new task form on click
-// 2) edit the appropriate task fields for each icon
-// 3) remove a task when clicking on the check icon
-// 4) update and improve styling features
-
+// 1) edit the appropriate task fields for each icon
+// 2) remove a task when clicking on the check icon
+// 3) update and improve styling features
 
 import './style.css';
 import * as logicModule from './logic';
@@ -19,7 +16,7 @@ function getActiveProject() {
 // Default objects that are created and pushed to the projects array
 const project1 = logicModule.newProject('primary');
 logicModule.addNewProject(project1);
-const task1 = logicModule.newTask('breakfast', 'high', 'eat more oatmeal and whole fruit', '4/20/22');
+const task1 = logicModule.newTask('breakfast', 'high', '2022-04-20');
 logicModule.addNewTask(task1);
 
 const project2 = logicModule.newProject('groceries');
@@ -31,7 +28,7 @@ window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
 
     console.log(e.target);
-    // console.log(targetParent);
+    console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
     if (targetParent.classList.contains('new-project-btn')) {
@@ -105,21 +102,43 @@ window.addEventListener('click', function (e) {
         domModule.toggleDisplayNone(newTaskForm);
     }
 
+    if (e.target.classList.contains('task-minus-svg')) {
+        domModule.mainRender();
+    }
+
+    // add a new task from the form
     if (e.target.classList.contains('new-task-confirm')) {
         console.log('get the input values');
         let nameInput = document.querySelector('.task-name-input');
         let dateInput = document.querySelector('.task-date-input');
+        let priorityValue = '';
 
         let priorities = document.getElementsByName('priority');
         for (let priority of priorities) {
             if (priority.checked) {
-                console.log(priority.id);
+                priorityValue = priority.id;
             }
         }
 
-        console.log(nameInput.value);
-        console.log(dateInput.value);
+        if (nameInput.value === '') {
+            alert('Task must have a name before adding');
+        } else {
+            let newTask = logicModule.newTask( `${nameInput.value}`, `${priorityValue}`, `${dateInput.value}`);
+            logicModule.addNewTask(newTask);
+            domModule.mainRender();
+        }
     }
+
+    // remove a task when clicking on the check mark svg
+    if (e.target.classList.contains('check-svg')) {
+        let taskName = targetParent.children[1].innerText;
+        logicModule.removeTask(taskName);
+        domModule.mainRender();
+    }
+
+    // update priority function
+
+    // update date function
 })
 
 export { getActiveProject };
