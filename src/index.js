@@ -1,7 +1,6 @@
 // To Do List
-// 1) edit the appropriate task fields for each icon
-// 2) remove a task when clicking on the check icon
-// 3) update and improve styling features
+// ** edit the appropriate task fields for each icon
+// ** update and improve styling features
 
 import './style.css';
 import * as logicModule from './logic';
@@ -137,8 +136,16 @@ window.addEventListener('click', function (e) {
     }
 
     // update priority function
+    if (e.target.classList.contains('star-svg')) {
+        let taskName = targetParent.children[1].innerText;
+        logicModule.updateTaskPriority(taskName);
+        domModule.mainRender();
+    }
 
     // update date function
+    if (e.target.classList.contains('calendar-svg')) {
+        console.log('reveal date selector form');
+    }
 })
 
 export { getActiveProject };

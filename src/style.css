@@ -60,6 +60,11 @@ main {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
+.active-project {
+    background-color: rgb(136, 136, 136);
+    color: white;
+}
+
 .new-project-form {
     justify-content: flex-start;
 }
@@ -118,6 +123,7 @@ svg:hover {
 .task-card, .new-task-form {
     display: flex;
     align-items: center;
+    position: relative;
     gap: 2rem;
     border: 1px solid blue;
     border-radius: 6px;
@@ -149,6 +155,21 @@ svg:hover {
     display: flex;
     align-items: center;
     width: 70%;
+}
+
+.update-date-div {
+    position: absolute;
+    right: 8%;
+    top: -80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid blue;
+    border-radius: 6px;
+    width: 200px;
+    padding: .5rem;
+    box-shadow: rgba(91, 97, 102, 0.2) 0px 1px 2px 0px, rgba(71, 76, 79, 0.15) 0px 1px 3px 1px;
 }
 
 .task-minus-svg {

@@ -75,7 +75,18 @@ function removeTask(taskName) {
     projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
 }
 
-export { projects, newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask };
+function updateTaskPriority(taskName) {
+    let activeProject = index.getActiveProject();
+    console.log(projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority);
+
+    if (projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority === 'high') {
+        projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'low';
+    } else {
+        projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'high';
+    }
+}
+
+export { projects, newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask, updateTaskPriority };
 
 
 

@@ -58,8 +58,16 @@ function mainRender() {
     logicModule.projects.forEach((project) => {
         let projectCard = document.createElement('div');
         projectCard.classList.add('project-card');
+
         let projectName = document.createElement('p');
         projectName.innerText = project.name;
+
+        // UI display of the activeProject selected
+        let activeProject = index.getActiveProject();
+
+        if (project.name === activeProject) {
+            projectCard.classList.add('active-project');
+        }
 
         let deleteSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         deleteSvg.classList.add('delete-svg');
@@ -69,7 +77,6 @@ function mainRender() {
         projectCard.appendChild(deleteSvg);
         projectWrapper.appendChild(projectCard);
     })
-
 
     // separate into it's own function
     let taskWrapper = document.createElement('div');
@@ -187,6 +194,14 @@ function mainRender() {
             let editSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             editSvg.classList.add('edit-svg');
             editSvg.innerHTML = `<use href="${editIcon}#edit-icon"></use>`;
+
+            let updateDateDiv = document.createElement('div');
+            updateDateDiv.classList.add('update-date-div');
+            updateDateDiv.classList.add('hide');
+            let updateDateInput = document.createElement('input');
+            updateDateInput.classList.add('update-date-input');
+            updateDateInput.setAttribute('type', 'date');
+            updateDateDiv.appendChild(updateDateInput);
             
             taskCard.appendChild(checkSvg);
             taskCard.appendChild(taskName);
@@ -194,6 +209,7 @@ function mainRender() {
             taskCard.appendChild(calendarSvg);
             taskCard.appendChild(starSvg);
             taskCard.appendChild(editSvg);
+            taskCard.appendChild(updateDateDiv);
             taskWrapper.appendChild(taskCard);
         })
     } 
