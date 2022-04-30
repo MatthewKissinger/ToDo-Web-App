@@ -77,7 +77,6 @@ function removeTask(taskName) {
 
 function updateTaskPriority(taskName) {
     let activeProject = index.getActiveProject();
-    console.log(projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority);
 
     if (projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority === 'high') {
         projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'low';

@@ -27,7 +27,6 @@ window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
 
     console.log(e.target);
-    console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
     if (targetParent.classList.contains('new-project-btn')) {
@@ -144,7 +143,7 @@ window.addEventListener('click', function (e) {
 
     // update date function
     if (e.target.classList.contains('calendar-svg')) {
-        console.log('reveal date selector form');
+        domModule.toggleDisplayNone(targetParent.lastChild);
     }
 })
 

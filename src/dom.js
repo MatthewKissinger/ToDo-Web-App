@@ -190,10 +190,6 @@ function mainRender() {
             if (task.priority === 'high') {
                 starSvg.classList.add('star-fill'); 
             }
-    
-            let editSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-            editSvg.classList.add('edit-svg');
-            editSvg.innerHTML = `<use href="${editIcon}#edit-icon"></use>`;
 
             let updateDateDiv = document.createElement('div');
             updateDateDiv.classList.add('update-date-div');
@@ -201,14 +197,23 @@ function mainRender() {
             let updateDateInput = document.createElement('input');
             updateDateInput.classList.add('update-date-input');
             updateDateInput.setAttribute('type', 'date');
+            // add a confirm or save button svg here
+            let saveSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            saveSvg.classList.add('save-svg');
+            saveSvg.innerHTML = `<use href="${saveIcon}#save-icon"></use>`;
+            let minusSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            minusSvg.classList.add('minus-svg');
+            minusSvg.innerHTML = `<use href="${minusIcon}#minus-icon"></use>`;
+
             updateDateDiv.appendChild(updateDateInput);
+            updateDateDiv.appendChild(saveSvg);
+            updateDateDiv.appendChild(minusSvg);
             
             taskCard.appendChild(checkSvg);
             taskCard.appendChild(taskName);
             taskCard.appendChild(dueDateText);
             taskCard.appendChild(calendarSvg);
             taskCard.appendChild(starSvg);
-            taskCard.appendChild(editSvg);
             taskCard.appendChild(updateDateDiv);
             taskWrapper.appendChild(taskCard);
         })
