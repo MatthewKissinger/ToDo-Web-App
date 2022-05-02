@@ -1,5 +1,4 @@
 // To Do List
-// ** edit the appropriate task fields for each icon
 // ** update and improve styling features
 
 import './style.css';
@@ -27,6 +26,7 @@ window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
 
     console.log(e.target);
+    console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
     if (targetParent.classList.contains('new-project-btn')) {
@@ -106,7 +106,6 @@ window.addEventListener('click', function (e) {
 
     // add a new task from the form
     if (e.target.classList.contains('new-task-confirm')) {
-        console.log('get the input values');
         let nameInput = document.querySelector('.task-name-input');
         let dateInput = document.querySelector('.task-date-input');
         let priorityValue = '';
@@ -144,6 +143,29 @@ window.addEventListener('click', function (e) {
     // update date function
     if (e.target.classList.contains('calendar-svg')) {
         domModule.toggleDisplayNone(targetParent.lastChild);
+    }
+
+    // update the date and close the update-date-div
+    if (e.target.classList.contains('save-svg') && targetParent.classList.contains('update-date-div')) {
+        let updateDate = e.target.previousElementSibling;
+        let taskName = targetParent.parentNode.children[1].innerText;
+        let projectIndex = logicModule.findIndexOfProject(_activeProject);
+        let taskIndex = logicModule.findIndexOfTask(taskName);
+        logicModule.projects[projectIndex].tasks[taskIndex].setDueDate(updateDate.value);
+        console.log(updateDate.value);
+        console.log(logicModule.projects);
+
+        domModule.mainRender();
+
+        updateDate.value = '';
+    }
+
+    // when clicking the minus-svg close the update-date-div and clear the update-input.value
+    if (e.target.classList.contains('minus-svg') && targetParent.classList.contains('update-date-div')) {
+        console.log('close and clear the update-date-div');
+        let updateDate = document.querySelector('.update-date-input');
+        updateDate.value = '';
+        domModule.mainRender();
     }
 })
 

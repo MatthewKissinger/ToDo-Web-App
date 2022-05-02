@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-light-color: #F7F9F9;
+    --main-dark-color: #423629;
+    --main-gray-color: #6e8894;
+    --main-remove-color: #d64550;
+    --main-add-color: #78bc61;
+}
+
 svg > * {
     pointer-events: none;
 }
@@ -15,6 +23,7 @@ svg > * {
 body {
     display: grid;
     grid-template-rows: 15vh 85vh 10vh;
+    color: var(--main-dark-color);
 }
 
 p {
@@ -31,38 +40,46 @@ button {
 }
 
 header {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
+    color: var(--main-light-color);
+    background-color: var(--main-gray-color);
     display: flex;
     align-items: center;
     padding: 2rem;
 }
 
 main {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     display: grid;
     grid-template-columns: 1fr 2.5fr;
 }
 
 #project-wrapper {
-    border: 1px solid orange;
+    /* border: 1px solid orange; */
     padding: 1.5rem;
+    background-color: #d3d6db;
 }
 
 .project-card, .new-project-btn, .new-project-form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid blue;
+    border: 1px solid var(--main-gray-color);
     border-radius: 6px;
     padding: .75rem 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
+    background-color: var(--main-light-color);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .active-project {
-    background-color: rgb(136, 136, 136);
-    color: white;
+    background-color: var(--main-gray-color);
+    color: var(--main-light-color);
+}
+
+.active-project > svg {
+    stroke: var(--main-light-color);
 }
 
 .new-project-form {
@@ -75,7 +92,7 @@ label {
 
 input {
     padding: .3rem .5rem;
-    border: 1px solid lightgray;
+    border: 1px solid var(--main-gray-color);
     font-size: 1rem;
 }
 
@@ -84,7 +101,7 @@ input[type="radio"], input[type="date"] {
 }
 
 svg {
-    stroke: black;
+    stroke: var(--main-dark-color);
     fill: none;
     height: 2rem;
     width: 2rem;
@@ -92,7 +109,11 @@ svg {
 }
 
 svg:hover {
-    stroke: green;
+    stroke: var(--main-add-color);
+}
+
+.check-svg:hover {
+    stroke: var(--main-light-color);
 }
 
 .plus-svg, .save-svg {
@@ -110,20 +131,29 @@ svg:hover {
 }
 
 .minus-svg:hover {
-    stroke: red;
+    stroke: var(--main-remove-color);
 }
 
 .delete-svg:hover {
-    stroke: red;
+    stroke: var(--main-remove-color);
+}
+
+.star-svg {
+    stroke: var(--main-add-color);
+}
+
+.star-svg:hover {
+    stroke: var(--main-gray-color);
 }
 
 .star-fill {
-    fill: yellow;
+    fill: var(--main-add-color);
 }
 
 #task-wrapper {
     padding: 1.5rem 3rem;
     position: relative;
+    background-color: #bac5d6;
 }
 
 .task-card, .new-task-form {
@@ -131,11 +161,12 @@ svg:hover {
     align-items: center;
     position: relative;
     gap: 2rem;
-    border: 1px solid blue;
+    border: 1px solid var(--main-gray-color);
     border-radius: 6px;
     padding: .75rem 1.5rem;
     margin-bottom: 1rem;
     cursor: pointer;
+    background-color: var(--main-light-color);
     box-shadow: rgba(91, 97, 102, 0.2) 0px 1px 2px 0px, rgba(71, 76, 79, 0.15) 0px 1px 3px 1px;
 }
 
@@ -154,7 +185,7 @@ svg:hover {
     z-index: 2;
     top: 5%;
     left: 30%;
-    background-color: white;
+    background-color: var(--main-light-color);
 }
 
 .task-form-div {
@@ -170,8 +201,8 @@ svg:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    border: 1px solid blue;
+    background-color: var(--main-light-color);
+    border: 1px solid var(--main-gray-color);
     border-radius: 6px;
     width: 275px;
     padding: .7rem;
@@ -183,7 +214,7 @@ svg:hover {
 }
 
 .task-minus-svg:hover {
-    stroke: red;
+    stroke: var(--main-remove-color);
 }
 
 .task-form-div:nth-child(4) {
@@ -203,7 +234,8 @@ svg:hover {
 }
 
 footer {
-    border: 1px solid purple;
+    background-color: var(--main-gray-color);
+    color: var(--main-light-color);
     display: flex;
     justify-content: center;
     align-items: center;
