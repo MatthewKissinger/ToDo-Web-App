@@ -1,7 +1,7 @@
 // importing activeProject variable for testing purposes
 import * as index from './index';
 
-let projects = [];
+// let projects = [];
 
 // factory functions
 const updateProject = {
@@ -42,29 +42,29 @@ const newTask = (name, priority, dueDate) => {
 
 // methods
 function addNewProject(project) {
-    projects.push(project);
+    index.projects.push(project);
 }
 
 function findIndexOfProject(projectName) {
-    let index = projects.findIndex(obj => {
+    let projectIndex = index.projects.findIndex(obj => {
         return obj.name === projectName;
     })
 
-    return index;
+    return projectIndex;
 }
 
 function removeProject(projectName) {
-    projects.splice(findIndexOfProject(projectName), 1);
+    index.projects.splice(findIndexOfProject(projectName), 1);
 }
 
 function addNewTask(task) {
-    projects[findIndexOfProject(index.getActiveProject())].tasks.push(task);
+    index.projects[findIndexOfProject(index.getActiveProject())].tasks.push(task);
 }
 
 function findIndexOfTask(taskName) {
     let activeProject = index.getActiveProject();
     let projectIndex = findIndexOfProject(activeProject);
-    let taskIndex = projects[projectIndex].tasks.findIndex(obj => {
+    let taskIndex = index.projects[projectIndex].tasks.findIndex(obj => {
         return obj.name === taskName;
     })
     return taskIndex;
@@ -72,20 +72,20 @@ function findIndexOfTask(taskName) {
 
 function removeTask(taskName) {
     let activeProject = index.getActiveProject();
-    projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
+    index.projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
 }
 
 function updateTaskPriority(taskName) {
     let activeProject = index.getActiveProject();
 
-    if (projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority === 'high') {
-        projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'low';
+    if (index.projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority === 'high') {
+        index.projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'low';
     } else {
-        projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'high';
+        index.projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'high';
     }
 }
 
-export { projects, newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask, updateTaskPriority };
+export { newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask, updateTaskPriority };
 
 
 

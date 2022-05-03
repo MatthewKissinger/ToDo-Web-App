@@ -21,6 +21,7 @@ svg > * {
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
     display: grid;
     grid-template-rows: 15vh 85vh 10vh;
     color: var(--main-dark-color);

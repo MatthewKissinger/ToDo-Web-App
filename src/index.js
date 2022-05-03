@@ -1,9 +1,10 @@
 // To Do List
-// ** update and improve styling features
+// add in local storage saving system
 
 import './style.css';
 import * as logicModule from './logic';
 import * as domModule from './dom';
+import checkMark from './check.svg';
 
 let _activeProject = 'primary';
 
@@ -12,6 +13,10 @@ function getActiveProject() {
 }
 
 // Default objects that are created and pushed to the projects array
+
+console.log(localStorage)
+let projects = [];
+
 const project1 = logicModule.newProject('primary');
 logicModule.addNewProject(project1);
 const task1 = logicModule.newTask('breakfast', 'high', '2022-04-20');
@@ -25,8 +30,8 @@ domModule.mainRender();
 window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
 
-    console.log(e.target);
-    console.log(targetParent);
+    // console.log(e.target);
+    // console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
     if (targetParent.classList.contains('new-project-btn')) {
@@ -151,9 +156,9 @@ window.addEventListener('click', function (e) {
         let taskName = targetParent.parentNode.children[1].innerText;
         let projectIndex = logicModule.findIndexOfProject(_activeProject);
         let taskIndex = logicModule.findIndexOfTask(taskName);
-        logicModule.projects[projectIndex].tasks[taskIndex].setDueDate(updateDate.value);
-        console.log(updateDate.value);
-        console.log(logicModule.projects);
+        projects[projectIndex].tasks[taskIndex].setDueDate(updateDate.value);
+        // console.log(updateDate.value);
+        // console.log(projects);
 
         domModule.mainRender();
 
@@ -169,4 +174,19 @@ window.addEventListener('click', function (e) {
     }
 })
 
-export { getActiveProject };
+// mouseover Event listener to change the color of the check-svg background color to dark
+window.addEventListener('mouseover', function (e) {
+    if (e.target.classList.contains('check-svg')) {
+        e.target.innerHTML = `<use href="${checkMark}#check-icon-dark"></use>`
+    }
+})
+
+// mouseout event listener to change the color of the check-svg background color back to light
+window.addEventListener('mouseout', function (e) {
+    if (e.target.classList.contains('check-svg')) {
+        e.target.innerHTML = `<use href="${checkMark}#check-icon-light"></use>`
+    }
+})
+
+
+export { projects, getActiveProject };

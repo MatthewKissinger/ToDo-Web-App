@@ -4,7 +4,7 @@
         <polyline points="19 6 9 17 4 12"></polyline>
     </symbol>
     <symbol id="check-icon-dark" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="12" fill="#423629" stroke="none"/>
+        <circle cx="12" cy="12" r="12" fill="#6e8894" stroke="none"/>
         <polyline points="19 6 9 17 4 12"></polyline>
     </symbol>
 </svg>

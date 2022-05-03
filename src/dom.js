@@ -6,7 +6,6 @@ import plusSquare from './plus-square.svg';
 import checkMark from './check.svg';
 import starIcon from './star.svg';
 import calendarIcon from './calendar.svg';
-import editIcon from './edit.svg';
 import saveIcon from './save.svg';
 import minusIcon from './minus-square.svg';
 
@@ -55,7 +54,7 @@ function mainRender() {
     projectWrapper.appendChild(newProjectDiv);
     projectWrapper.appendChild(newProjectForm);
 
-    logicModule.projects.forEach((project) => {
+    index.projects.forEach((project) => {
         let projectCard = document.createElement('div');
         projectCard.classList.add('project-card');
 
@@ -163,8 +162,8 @@ function mainRender() {
     taskWrapper.appendChild(newTaskDiv);
     taskWrapper.appendChild(newTaskForm);
 
-    if (!(logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.length <= 0)) {
-        logicModule.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
+    if (!(index.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.length <= 0)) {
+        index.projects[logicModule.findIndexOfProject(index.getActiveProject())].tasks.forEach((task) => {
 
             let taskCard = document.createElement('div');
             taskCard.classList.add('task-card');
@@ -173,7 +172,7 @@ function mainRender() {
     
             let checkSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             checkSvg.classList.add('check-svg');
-            checkSvg.innerHTML = `<use href="${checkMark}#check-icon"></use>`;
+            checkSvg.innerHTML = `<use href="${checkMark}#check-icon-light"></use>`;
     
             let dueDateText = document.createElement('p');
             dueDateText.classList.add('due-date-text');
