@@ -43,6 +43,8 @@ const newTask = (name, priority, dueDate) => {
 // methods
 function addNewProject(project) {
     index.projects.push(project);
+
+    localStorage.setItem("projects", JSON.stringify(index.projects));
 }
 
 function findIndexOfProject(projectName) {
@@ -55,10 +57,14 @@ function findIndexOfProject(projectName) {
 
 function removeProject(projectName) {
     index.projects.splice(findIndexOfProject(projectName), 1);
+
+    localStorage.setItem("projects", JSON.stringify(index.projects));
 }
 
 function addNewTask(task) {
     index.projects[findIndexOfProject(index.getActiveProject())].tasks.push(task);
+
+    localStorage.setItem("projects", JSON.stringify(index.projects));
 }
 
 function findIndexOfTask(taskName) {
@@ -73,6 +79,8 @@ function findIndexOfTask(taskName) {
 function removeTask(taskName) {
     let activeProject = index.getActiveProject();
     index.projects[findIndexOfProject(activeProject)].tasks.splice(findIndexOfTask(taskName), 1);
+
+    localStorage.setItem("projects", JSON.stringify(index.projects));
 }
 
 function updateTaskPriority(taskName) {
@@ -83,6 +91,12 @@ function updateTaskPriority(taskName) {
     } else {
         index.projects[findIndexOfProject(activeProject)].tasks[findIndexOfTask(taskName)].priority = 'high';
     }
+
+    localStorage.setItem("projects", JSON.stringify(index.projects));
+}
+
+function updateTaskDate(taskName) {
+    let activeProject = index.getActiveProject();
 }
 
 export { newProject, addNewProject, findIndexOfProject, removeProject, newTask, addNewTask, findIndexOfTask, removeTask, updateTaskPriority };

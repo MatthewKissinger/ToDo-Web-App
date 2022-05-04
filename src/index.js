@@ -13,25 +13,36 @@ function getActiveProject() {
 }
 
 // Default objects that are created and pushed to the projects array
-
-console.log(localStorage)
 let projects = [];
+// console.log(localStorage.length);
+// console.log(localStorage);
+// localStorage.clear();
 
-const project1 = logicModule.newProject('primary');
-logicModule.addNewProject(project1);
-const task1 = logicModule.newTask('breakfast', 'high', '2022-04-20');
-logicModule.addNewTask(task1);
+if (localStorage.length <= 0) {
+    
+    const project1 = logicModule.newProject('primary');
+    logicModule.addNewProject(project1);
+    const task1 = logicModule.newTask('breakfast', 'high', '2022-04-20');
+    logicModule.addNewTask(task1);
 
-const project2 = logicModule.newProject('groceries');
-logicModule.addNewProject(project2);
+    const project2 = logicModule.newProject('groceries');
+    logicModule.addNewProject(project2);
+
+    localStorage.setItem("projects", JSON.stringify(projects));
+    console.log(projects);
+
+    console.log(localStorage);
+
+} else {
+    let localProjects = JSON.parse(localStorage.getItem("projects"));
+
+    projects = localProjects;
+}
 
 domModule.mainRender();
 
 window.addEventListener('click', function (e) {
     let targetParent = e.target.parentElement;
-
-    // console.log(e.target);
-    // console.log(targetParent);
 
     // when the add project plus button is selected swap out the add project div with the add project form
     if (targetParent.classList.contains('new-project-btn')) {
@@ -156,9 +167,10 @@ window.addEventListener('click', function (e) {
         let taskName = targetParent.parentNode.children[1].innerText;
         let projectIndex = logicModule.findIndexOfProject(_activeProject);
         let taskIndex = logicModule.findIndexOfTask(taskName);
-        projects[projectIndex].tasks[taskIndex].setDueDate(updateDate.value);
-        // console.log(updateDate.value);
-        // console.log(projects);
+
+        projects[projectIndex].tasks[taskIndex].dueDate = updateDate.value;
+
+        localStorage.setItem("projects", JSON.stringify(projects));
 
         domModule.mainRender();
 
@@ -167,7 +179,6 @@ window.addEventListener('click', function (e) {
 
     // when clicking the minus-svg close the update-date-div and clear the update-input.value
     if (e.target.classList.contains('minus-svg') && targetParent.classList.contains('update-date-div')) {
-        console.log('close and clear the update-date-div');
         let updateDate = document.querySelector('.update-date-input');
         updateDate.value = '';
         domModule.mainRender();
